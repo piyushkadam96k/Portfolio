@@ -43,7 +43,7 @@
 ```
 NeoBrutalist/
 ├── 📄 index.html          # Main portfolio page
-├── 📄 admin.html           # Admin panel (password: admin123)
+├── 📄 admin.html           # Admin panel (password: xyz1478)
 ├── 📄 README.md            # You are here!
 └── 📁 Assets/
     └── 📁 images/
@@ -72,7 +72,7 @@ xdg-open index.html
 ### 3. Customize via Admin Panel
 
 1. Open `admin.html` in your browser
-2. Enter password: `admin1234`
+2. Enter password: `xyz1478`
 3. Edit your name, bio, skills, projects, socials — everything!
 4. Click **SAVE CONFIG**
 5. Refresh `index.html` to see your changes
@@ -184,3 +184,4 @@ This project is open source and available under the [MIT License](LICENSE).
 <p align="center">
   ⭐ <i>If you like this project, give it a star!</i> ⭐
 </p>
+

@@ -5,15 +5,6 @@
   <i>Because the web has become too sanitized.</i>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Made%20With-HTML%20%7C%20CSS%20%7C%20JS-black?style=for-the-badge&logo=html5&logoColor=white" alt="Tech Stack">
-  <img src="https://img.shields.io/badge/Style-NeoBrutalism-FBFF48?style=for-the-badge&labelColor=121212" alt="Style">
-  <img src="https://img.shields.io/badge/License-MIT-33FF57?style=for-the-badge&labelColor=121212" alt="License">
-  <img src="https://img.shields.io/badge/Status-Live-FF70A6?style=for-the-badge&labelColor=121212" alt="Status">
-</p>
-
----
-
 ## 🎯 About
 
 **NeoBrutalist Portfolio** is a high-impact, visually striking personal portfolio built with raw HTML, CSS, and JavaScript. It embraces the **Neo-Brutalist** design philosophy — bold borders, hard shadows, loud colors, and zero compromise on personality.
@@ -193,3 +184,4 @@ This project is open source and available under the [MIT License](LICENSE).
 <p align="center">
   ⭐ <i>If you like this project, give it a star!</i> ⭐
 </p>
+

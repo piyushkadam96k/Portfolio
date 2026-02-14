@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Portfolio Config</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-yellow': '#FBFF48',
+                        'neo-pink': '#FF70A6',
+                        'neo-blue': '#3B82F6',
+                        'neo-green': '#33FF57',
+                        'neo-purple': '#A855F7',
+                        'neo-orange': '#FF9F1C',
+                        'neo-red': '#FF2A2A',
+                        'neo-white': '#FFFDF5',
+                        'neo-black': '#121212',
+                    },
+                    fontFamily: {
+                        'display': ['"Space Grotesk"', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Default config — works even if config.js is deleted
+        const defaultConfig = {
+            identity: {
+                name: "Piyush Kadam",
+                title: "Full Stack Developer",
+                tagline: "I build digital products that refuse to be boring.",
+                status: "Available",
+                location: "Pune, India",
+                email: "kadamamit462@gmail.com",
+                logoText: "piyushkadam96k",
+                avatar: "Assets/images/portfolio.png"
+            },
+            seo: {
+                description: "Piyush Kadam | Professional Full Stack Developer specializing in high-performance NeoBrutalist web experiences.",
+                keywords: "Piyush Kadam, Full Stack Developer, NeoBrutalist, Portfolio, Web Development, UI/UX, Javascript, React",
+                image: "Assets/images/og-image.png"
+            },
+            social: {
+                github: "https://github.com/piyushkadam96k",
+                linkedin: "https://linkedin.com/in/piyushkadam96k",
+                instagram: "https://instagram.com/piyushkadam96k"
+            },
+            about: {
+                title: "Who am I?",
+                bio: "I am Piyush Kadam. A creative developer who believes the web has become too sanitized. I bring personality back to code.",
+                highlights: [
+                    "Specialized in Designing and Web Development.",
+                    "Obsessed with Perfection and AI.",
+                    "Building code that works."
+                ]
+            },
+            skills: [
+                { name: "React", type: "Library", color: "white" },
+                { name: "Next.js", type: "Framework", color: "neo-yellow" },
+                { name: "Python", type: "Language", color: "neo-blue" },
+                { name: "Node.js", type: "Backend", color: "neo-green" },
+                { name: "Tailwind", type: "Styling", color: "neo-pink" },
+                { name: "MySQL", type: "Data", color: "neo-purple" },
+                { name: "HTML5", type: "Core", color: "neo-orange" },
+                { name: "Git", type: "Version", color: "white" },
+                { name: "Java", type: "Language", color: "neo-orange" },
+                { name: "Django", type: "Framework", color: "neo-yellow" }
+            ],
+            experience: [
+                {
+                    role: "Full Stack Developer",
+                    company: "Self Employed",
+                    period: "2024 - Present",
+                    description: [
+                        "Building responsive and interactive web applications.",
+                        "Developing modern web applications using React."
+                    ],
+                    color: "neo-yellow"
+                }
+            ],
+            projects: [
+                {
+                    title: "Finance Asset Management System",
+                    description: "A comprehensive system for managing financial assets, tracking portfolios, and analyzing investment data.",
+                    tags: ["React", "Node.js", "MySQL", "Finance"],
+                    link: "https://github.com/piyushkadam96k/finace-asset-management-system",
+                    image: "Assets/images/stoceasy.png",
+                    color: "neo-green"
+                },
+                {
+                    title: "StockEasy",
+                    description: "An Online Stock Market Platform with Stock analysis, Chatbot and admin panel for user support.",
+                    tags: ["Django", "Python", "Streamlit", "Redis"],
+                    link: "#",
+                    image: "Assets/images/stoceasy.png",
+                    color: "neo-purple"
+                }
+            ],
+            testimonials: [
+                {
+                    text: "Piyush Proved no matter how pressure or less time is he makes projects complete outstandingly",
+                    author: "Student @ L J University",
+                    role: "Peer",
+                    color: "neo-green"
+                },
+                {
+                    text: "Fast, reliable, and actually has good taste in design. A rare combination.",
+                    author: "Client",
+                    role: "CEO",
+                    color: "neo-blue"
+                }
+            ]
+        };
+
+        // Load saved config from localStorage, fallback to defaults
+        let config;
+        try {
+            const saved = localStorage.getItem('portfolio_config');
+            config = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultConfig));
+        } catch (e) {
+            config = JSON.parse(JSON.stringify(defaultConfig));
+        }
+    </script>
+    <script>
+        window.onerror = function (msg, url, line, col, error) {
+            alert("Script Error: " + msg + "\nLine: " + line);
+            const errDiv = document.createElement("div");
+            errDiv.style.background = "red";
+            errDiv.style.color = "white";
+            errDiv.style.padding = "20px";
+            errDiv.innerHTML = "<strong>CRITICAL ERROR:</strong> " + msg;
+            document.body.prepend(errDiv);
+        };
+    </script>
+</head>
+
+<body class="bg-[#FFFDF5] text-[#121212] font-display min-h-screen">
+
+    <!-- PASSWORD LOGIN MODAL -->
+    <div id="login-modal"
+        class="fixed inset-0 z-[9999] flex items-center justify-center bg-neo-black/90 backdrop-blur-sm transition-opacity duration-500">
+        <div class="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000] p-8 max-w-md w-full mx-4 relative">
+            <div
+                class="absolute -top-6 -left-4 bg-neo-yellow border-4 border-black px-4 py-1 shadow-[4px_4px_0px_0px_#000] rotate-[-3deg]">
+                <span class="font-black text-lg uppercase">🔒 Admin Access</span>
+            </div>
+
+            <div class="mt-4 mb-6">
+                <h2 class="text-3xl font-black uppercase tracking-tighter mb-2">Enter Password</h2>
+                <p class="font-mono text-sm text-gray-500">/// AUTHORIZED PERSONNEL ONLY ///</p>
+            </div>
+
+            <div class="space-y-4">
+                <input type="password" id="admin-password" placeholder="PASSWORD"
+                    class="w-full bg-gray-50 border-4 border-black p-4 font-mono font-bold text-xl focus:outline-none focus:bg-neo-yellow focus:shadow-[4px_4px_0px_0px_#000] transition-all"
+                    autofocus>
+
+                <div id="login-error"
+                    class="hidden bg-neo-red text-white px-4 py-2 font-mono font-bold text-sm border-2 border-black">
+                    ❌ WRONG PASSWORD. TRY AGAIN.
+                </div>
+
+                <button onclick="checkPassword()"
+                    class="w-full bg-neo-green border-4 border-black px-8 py-4 font-black text-xl uppercase hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_#000] transition-all flex items-center justify-center gap-2">
+                    <i class="ri-lock-unlock-line"></i> UNLOCK
+                </button>
+            </div>
+
+            <div class="mt-4 text-center">
+                <a href="index.html" class="font-mono text-sm text-gray-400 hover:text-neo-blue hover:underline">← Back
+                    to Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT (blurred until login) -->
+    <div id="main-content" class="filter blur-sm pointer-events-none p-4 md:p-8">
+        <div class="max-w-4xl mx-auto">
+            <header class="mb-8 flex justify-between items-center border-b-4 border-black pb-4">
+                <div>
+                    <h1 class="text-4xl font-black uppercase tracking-tighter">Admin Panel</h1>
+                    <p class="font-mono text-sm opacity-60">/// SYSTEM_CONFIGURATION ///</p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="index.html"
+                        class="font-mono font-bold hover:underline decoration-neo-blue decoration-2">VIEW
+                        SITE -></a>
+                </div>
+            </header>
+
+            <div id="editor-container" class="space-y-12">
+                <!-- content injected by JS -->
+            </div>
+
+            <div class="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
+                <button onclick="saveConfig()"
+                    class="bg-neo-green border-4 border-black px-8 py-4 font-black text-xl hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_#000] transition-all flex items-center gap-2">
+                    <i class="ri-save-3-line"></i> SAVE CONFIG
+                </button>
+                <button onclick="resetConfig()"
+                    class="bg-neo-red text-white border-4 border-black px-8 py-4 font-black text-sm hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_#000] transition-all flex items-center gap-2">
+                    <i class="ri-refresh-line"></i> RESET TO DEFAULTS
+                </button>
+                <div id="save-status"
+                    class="hidden bg-black text-white px-4 py-2 font-mono text-sm border-2 border-white">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentConfig = JSON.parse(JSON.stringify(config));
+
+        // --- AUTH ---
+        function checkPassword() {
+            const input = document.getElementById('admin-password');
+            const error = document.getElementById('login-error');
+            const mainContent = document.getElementById('main-content');
+            const modal = document.getElementById('login-modal');
+
+            // SIMPLE CLIENT-SIDE PROTECTION
+            // CHANGE THIS PASSWORD IF NEEDED
+            if (input.value === "admin123") {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                mainContent.classList.remove('filter', 'blur-sm', 'pointer-events-none');
+                setTimeout(() => modal.remove(), 500);
+            } else {
+                error.classList.remove('hidden');
+                input.value = '';
+                input.focus();
+                // Shake effect
+                input.classList.add('animate-pulse', 'bg-red-100');
+                setTimeout(() => input.classList.remove('animate-pulse', 'bg-red-100'), 500);
+            }
+        }
+
+        // Allow Enter key on password field
+        document.getElementById('admin-password').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // --- UI HELPERS ---
+        function createWrapper(label) {
+            const wrapper = document.createElement('div');
+            wrapper.className = "flex flex-col gap-1 mb-4";
+            const lbl = document.createElement('label');
+            lbl.className = "font-mono font-bold text-xs uppercase opacity-70";
+            lbl.innerText = label;
+            wrapper.appendChild(lbl);
+            return wrapper;
+        }
+
+        function createTextInput(value, onChange) {
+            let input;
+            if (String(value).length > 60) {
+                input = document.createElement('textarea');
+                input.rows = 4;
+            } else {
+                input = document.createElement('input');
+                input.type = "text";
+            }
+            input.className = "bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-[2px_2px_0px_0px_#000] transition-all w-full";
+            input.value = value || "";
+            input.oninput = (e) => onChange(e.target.value);
+            return input;
+        }
+
+        function createSectionTitle(title) {
+            const h2 = document.createElement('h2');
+            h2.className = "text-2xl font-black uppercase mb-6 border-b-2 border-black pb-2 inline-block bg-neo-black text-white px-2";
+            h2.innerText = title;
+            return h2;
+        }
+
+        function createCard() {
+            const section = document.createElement('section');
+            section.className = "bg-white border-4 border-black p-6 shadow-[4px_4px_0px_0px_#000]";
+            return section;
+        }
+
+        // --- GENERATORS ---
+
+        // 1. Handle Objects (Identity, Social, About)
+        function createObjectSection(title, objectData, rootKey) {
+            const section = createCard();
+            section.appendChild(createSectionTitle(title));
+
+            for (const [key, val] of Object.entries(objectData)) {
+                if (Array.isArray(val)) {
+                    // Handle Array inside Object (e.g. about.highlights)
+                    const listWrapper = document.createElement('div');
+                    listWrapper.className = "mt-4 p-4 border-2 border-dashed border-gray-300";
+                    listWrapper.appendChild(createWrapper(`${key} (List)`));
+
+                    val.forEach((item, idx) => {
+                        const input = createTextInput(item, (newValue) => {
+                            currentConfig[rootKey][key][idx] = newValue;
+                        });
+                        input.classList.add('mb-2');
+                        listWrapper.appendChild(input);
+                    });
+                    section.appendChild(listWrapper);
+
+                } else if (typeof val === 'object' && val !== null) {
+                    // Skip nested objects for now (not used in current schema)
+                } else {
+                    // Simple Value
+                    const wrapper = createWrapper(key);
+                    const input = createTextInput(val, (newValue) => {
+                        currentConfig[rootKey][key] = newValue;
+                    });
+                    wrapper.appendChild(input);
+                    section.appendChild(wrapper);
+                }
+            }
+            return section;
+        }
+
+        // 2. Handle Arrays of Objects (Skills, Experience, Projects)
+        function createArraySection(title, arrayData, rootKey) {
+            const section = createCard();
+            section.appendChild(createSectionTitle(title));
+
+            arrayData.forEach((item, idx) => {
+                const itemCard = document.createElement('div');
+                itemCard.className = "bg-gray-50 border-2 border-black p-4 mb-8 relative";
+
+                const badge = document.createElement('div');
+                badge.className = "absolute -top-3 -right-3 bg-neo-blue text-white font-mono text-xs px-2 py-1 border border-black shadow-sm";
+                badge.innerText = `#${idx + 1}`;
+                itemCard.appendChild(badge);
+
+                // Iterate properties of the item
+                for (const [prop, val] of Object.entries(item)) {
+                    const wrapper = createWrapper(prop);
+
+                    if (Array.isArray(val)) {
+                        // Array inside array item (e.g. project tags, job description)
+                        const textarea = document.createElement('textarea');
+                        textarea.className = "bg-white border-2 border-black p-3 font-bold focus:outline-none focus:bg-neo-yellow focus:shadow-[2px_2px_0px_0px_#000] transition-all w-full";
+                        textarea.rows = 4;
+                        textarea.value = val.join('\n');
+                        textarea.placeholder = "Enter each item on a new line";
+                        textarea.oninput = (e) => {
+                            currentConfig[rootKey][idx][prop] = e.target.value.split('\n').filter(s => s.trim() !== "");
+                        };
+                        wrapper.appendChild(textarea);
+                        const hint = document.createElement('span');
+                        hint.className = "text-[10px] text-gray-500 font-mono";
+                        hint.innerText = "Separate items with a new line";
+                        wrapper.appendChild(hint);
+                    } else {
+                        const input = createTextInput(val, (newValue) => {
+                            currentConfig[rootKey][idx][prop] = newValue;
+                        });
+                        wrapper.appendChild(input);
+                    }
+                    itemCard.appendChild(wrapper);
+                }
+                section.appendChild(itemCard);
+            });
+
+            return section;
+        }
+
+        // --- INIT ---
+        function init() {
+            const container = document.getElementById('editor-container');
+
+            // Render Sections
+            container.appendChild(createObjectSection("Identity", currentConfig.identity, 'identity'));
+            container.appendChild(createObjectSection("Social & Contact", currentConfig.social, 'social'));
+            container.appendChild(createObjectSection("About Me", currentConfig.about, 'about'));
+
+            container.appendChild(createArraySection("Skills", currentConfig.skills, 'skills'));
+            container.appendChild(createArraySection("Experience", currentConfig.experience, 'experience'));
+            container.appendChild(createArraySection("Projects", currentConfig.projects, 'projects'));
+            container.appendChild(createArraySection("Testimonials", currentConfig.testimonials, 'testimonials'));
+        }
+
+        // --- SAVE TO LOCALSTORAGE ---
+        function saveConfig() {
+            const status = document.getElementById('save-status');
+            try {
+                localStorage.setItem('portfolio_config', JSON.stringify(currentConfig));
+                status.innerText = "✅ SAVED! REFRESH YOUR MAIN PAGE TO SEE CHANGES.";
+                status.className = "bg-neo-green text-black px-4 py-2 font-mono text-sm border-2 border-black block";
+                status.classList.remove('hidden');
+                setTimeout(() => status.classList.add('hidden'), 4000);
+            } catch (err) {
+                console.error(err);
+                status.innerText = "❌ ERROR SAVING: " + err.message;
+                status.className = "bg-neo-red text-white px-4 py-2 font-mono text-sm border-2 border-black block";
+                status.classList.remove('hidden');
+            }
+        }
+
+        // --- RESET TO DEFAULTS ---
+        function resetConfig() {
+            if (confirm("Are you sure? This will reset ALL config to defaults and clear saved data.")) {
+                localStorage.removeItem('portfolio_config');
+                currentConfig = JSON.parse(JSON.stringify(defaultConfig));
+                // Re-render
+                document.getElementById('editor-container').innerHTML = '';
+                init();
+                const status = document.getElementById('save-status');
+                status.innerText = "🔄 RESET TO DEFAULTS! REFRESH MAIN PAGE.";
+                status.className = "bg-neo-orange text-black px-4 py-2 font-mono text-sm border-2 border-black block";
+                status.classList.remove('hidden');
+                setTimeout(() => status.classList.add('hidden'), 4000);
+            }
+        }
+
+        // --- START ---
+        const debugLog = document.createElement('div');
+        debugLog.id = 'debug-log';
+        debugLog.className = 'bg-black text-neo-green font-mono text-xs p-4 border-t-4 border-neo-green mt-12';
+        document.querySelector('#main-content .max-w-4xl').appendChild(debugLog);
+
+        function log(msg) {
+            console.log(msg);
+            debugLog.innerHTML += `> ${msg}<br>`;
+        }
+
+        try {
+            log('Initializing Admin Panel...');
+            if (typeof config === 'undefined') {
+                throw new Error("Config not available. Something went wrong.");
+            }
+            log('Config loaded. Version: ' + (config.identity ? config.identity.name : 'Unknown'));
+
+            const savedCheck = localStorage.getItem('portfolio_config');
+            if (savedCheck) {
+                log('Using saved config from localStorage.');
+            } else {
+                log('No saved config found. Using defaults.');
+            }
+
+            init();
+            log('UI Rendering Complete.');
+
+        } catch (e) {
+            log('ERROR: ' + e.message);
+            console.error(e);
+            document.getElementById('editor-container').innerHTML = `<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert"><p class="font-bold">CRITICAL ERROR</p><p>${e.message}</p></div>`;
+        }
+    </script>
+</body>
+
+</html>
